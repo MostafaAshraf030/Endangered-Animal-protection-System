@@ -1,0 +1,55 @@
+{
+  "host": "localhost",
+  "port": 8080,
+  "public": "../public/",
+  "paginate": {
+    "default": 25,
+    "max": 50
+  },
+  "cassandra": {
+    "clientOptions": {
+      "contactPoints": [
+        "127.0.0.1"
+      ],
+      "protocolOptions": {
+        "port": 9042
+      },
+      "localDataCenter": "datacenter1",
+      "keyspace": "datacenter1",
+      "queryOptions": {
+        "consistency": 1
+      }
+    },
+    "ormOptions": {
+      "defaultReplicationStrategy": {
+        "class": "SimpleStrategy",
+        "replication_factor": 1
+      },
+      "migration": "alter",
+      "createKeyspace": true
+    }
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "avy4wHh5mQqDwGyIk20f3aSOxp8=",
+    "authStrategies": [
+      "jwt",
+      "local"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  },
+  "mongodb": "mongodb://localhost:27017/zoo_monitor"
+}

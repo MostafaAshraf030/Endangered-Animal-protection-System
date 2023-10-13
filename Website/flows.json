@@ -1,0 +1,368 @@
+[
+    {
+        "id": "8e6d0b57.121cc8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "979874ca.08a3b8",
+        "type": "inject",
+        "z": "8e6d0b57.121cc8",
+        "name": "trying_input1",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 540,
+        "y": 580,
+        "wires": [
+            [
+                "d712b44a.3661c8"
+            ]
+        ]
+    },
+    {
+        "id": "d712b44a.3661c8",
+        "type": "random",
+        "z": "8e6d0b57.121cc8",
+        "name": "Heart_Rate",
+        "low": "60",
+        "high": "140",
+        "inte": "true",
+        "property": "payload",
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "819c64d.1659798"
+            ]
+        ]
+    },
+    {
+        "id": "819c64d.1659798",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "flow.set('Heart_Rate' , msg.payload);\nflow.set('animal_id' , '1');\n\n//msg.payload ={'random1' , msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 640,
+        "wires": [
+            [
+                "7b4f9619ad4c1e31"
+            ]
+        ]
+    },
+    {
+        "id": "c8b1d19e.6a8d6",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "msg.payload= {\"d\":{\n\"animal_id\":flow.get('animal_id'),\n\"Heart_Rate\":flow.get('Heart_Rate') , \n\"SpO2_Rate\":flow.get('SpO2_Rate'),\n\"Animal_Temperature\":flow.get('Animal_Temperature'),\n\"Weather\":flow.get('Weather'),\n\"Air_Qualit\":flow.get('Air_Qualit'),\n\"Humidity\":flow.get('Humidity'),\n}};\n//msg.payload ={'random1' , msg.payload};\nmsg.socketIOEvent = 'stream';\nmsg.headers = {'Content-type' : \"application/json\"}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1040,
+        "wires": [
+            [
+                "490589c4.f03eb8"
+            ]
+        ]
+    },
+    {
+        "id": "490589c4.f03eb8",
+        "type": "json",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 690,
+        "y": 1040,
+        "wires": [
+            [
+                "e4c1112ea452932a",
+                "2ac041e3e6a18f72"
+            ]
+        ]
+    },
+    {
+        "id": "f6e00f499d3bfc3b",
+        "type": "debug",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "e4c1112ea452932a",
+        "type": "debug",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "2ac041e3e6a18f72",
+        "type": "socketio-out",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "server": "47235b74.69f984",
+        "x": 940,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "db7cb0a329c0356b",
+        "type": "socketio-in",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "server": "47235b74.69f984",
+        "rules": [
+            {
+                "v": "add user"
+            },
+            {
+                "v": "new message"
+            },
+            {
+                "v": "typing"
+            },
+            {
+                "v": "stop typing"
+            }
+        ],
+        "x": 710,
+        "y": 1180,
+        "wires": [
+            [
+                "f6e00f499d3bfc3b"
+            ]
+        ]
+    },
+    {
+        "id": "7b4f9619ad4c1e31",
+        "type": "random",
+        "z": "8e6d0b57.121cc8",
+        "name": "SpO2_Rate",
+        "low": "30",
+        "high": "60",
+        "inte": "true",
+        "property": "payload",
+        "x": 530,
+        "y": 700,
+        "wires": [
+            [
+                "cea8e070340b8343"
+            ]
+        ]
+    },
+    {
+        "id": "cea8e070340b8343",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "flow.set('SpO2_Rate' , msg.payload);\n//msg.payload ={'random1' , msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 700,
+        "wires": [
+            [
+                "2774fb2b51c286cf"
+            ]
+        ]
+    },
+    {
+        "id": "2774fb2b51c286cf",
+        "type": "random",
+        "z": "8e6d0b57.121cc8",
+        "name": "Animal_Temperature",
+        "low": "35",
+        "high": "39",
+        "inte": "true",
+        "property": "payload",
+        "x": 560,
+        "y": 760,
+        "wires": [
+            [
+                "4830ee95fe972f1e"
+            ]
+        ]
+    },
+    {
+        "id": "4830ee95fe972f1e",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "flow.set('Animal_Temperature' , msg.payload);\n//msg.payload ={'random1' , msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 760,
+        "wires": [
+            [
+                "bd9d7d788e94fb4d"
+            ]
+        ]
+    },
+    {
+        "id": "9db4a6ed6295db74",
+        "type": "random",
+        "z": "8e6d0b57.121cc8",
+        "name": "Weather",
+        "low": "0",
+        "high": "50",
+        "inte": "true",
+        "property": "payload",
+        "x": 520,
+        "y": 920,
+        "wires": [
+            [
+                "d13630b0933ebbc9"
+            ]
+        ]
+    },
+    {
+        "id": "d13630b0933ebbc9",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "flow.set('Weather' , msg.payload);\n//msg.payload ={'random1' , msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 920,
+        "wires": [
+            [
+                "37ae9a7325c6b7eb"
+            ]
+        ]
+    },
+    {
+        "id": "37ae9a7325c6b7eb",
+        "type": "random",
+        "z": "8e6d0b57.121cc8",
+        "name": "Air_Qualit",
+        "low": "30",
+        "high": "60",
+        "inte": "true",
+        "property": "payload",
+        "x": 520,
+        "y": 980,
+        "wires": [
+            [
+                "35371a77fb1b2dfe"
+            ]
+        ]
+    },
+    {
+        "id": "35371a77fb1b2dfe",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "flow.set('Air_Qualit' , msg.payload);\n//msg.payload ={'random1' , msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 980,
+        "wires": [
+            [
+                "c8b1d19e.6a8d6"
+            ]
+        ]
+    },
+    {
+        "id": "bd9d7d788e94fb4d",
+        "type": "random",
+        "z": "8e6d0b57.121cc8",
+        "name": "Humidity",
+        "low": "30",
+        "high": "60",
+        "inte": "true",
+        "property": "payload",
+        "x": 520,
+        "y": 840,
+        "wires": [
+            [
+                "18f708e8e62e12cb"
+            ]
+        ]
+    },
+    {
+        "id": "18f708e8e62e12cb",
+        "type": "function",
+        "z": "8e6d0b57.121cc8",
+        "name": "",
+        "func": "flow.set('Humidity' , msg.payload);\n//msg.payload ={'random1' , msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 840,
+        "wires": [
+            [
+                "9db4a6ed6295db74"
+            ]
+        ]
+    },
+    {
+        "id": "47235b74.69f984",
+        "type": "socketio-config",
+        "port": "1881",
+        "sendClient": "true",
+        "path": "/socket.io",
+        "bindToNode": true
+    }
+]

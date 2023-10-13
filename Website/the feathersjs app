@@ -1,0 +1,27 @@
+sensor data
+time seconds 
+sensor name
+sensor value 
+sensor id
+
+
+
+heart rate , temp sensor every 3 seconds
+
+humadity, weather , 5 mins
+
+
+-whenever the app is connected to node-red, it should join a channel where its content is distributed to all listeners, i.e. the front end as well and postman. 
+
+-this, hence, should be manged via the express router, i.e. when ever you hit a specifc route, you should be able to listen to the stream
+
+-on a stream event, i.e. a new sensor data, there should be a function that handles its input in the database. 
+
+-there should be handler functions for queying the data and their pagination 
+
+-there's two types of sensor data streams, the ones of heart rate and temp,, and the ones of the humidity and wather (this will be created with the socket manager)
+
+-with the user controller everything should be the same as the other app
+
+** user creation, user update, user deletion, login, protected routes and roles
+** 

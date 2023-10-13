@@ -1,0 +1,47 @@
+- api functions for live streams
+	* convert date into yyyy-mm-dd-hh-mm
+	
+	* get which file the date is found in 
+		(based on the time of the recording or the saving process)
+		
+	* figure out the times at the video
+	
+	* determine those ranges in bytes in relevence to the video size
+	
+	* get a stream from to, and pipe it to the front-end
+	
+
+
+
+
+
+
+
+
+- admin/user rules
+
+- emergency types and notification sets
+
+
+they're 24 videos per day the end of the range determines the end file and the start determines the start file. 
+
+we need to determine all the files in between
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

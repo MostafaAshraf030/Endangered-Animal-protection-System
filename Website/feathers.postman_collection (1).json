@@ -1,0 +1,780 @@
+{
+	"info": {
+		"_postman_id": "e16d766b-b790-453c-83f2-09b8e1e73d3f",
+		"name": "feathers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"password\": \"user7@zoo.com\",\n \"email\": \"user7@zoo.com\",\n \"username\" : \"user7\",\n \"first_name\": \"user\",\n \"last_name\":\"user\"\n\n\n\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/signup",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "log in ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZWU0YjI3MTkyNTFkYWNlMDE4NjdhYSIsImlhdCI6MTY0MzAwNjc1OSwiZXhwIjoxNjUwNzgyNzU5fQ.BP0zZJB8zQs_Fhe0V2_C6RbQO0VLDkqZGIkjCQk3Fu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "$allowfiltering",
+								"value": "true",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n\"strategy\": \"local\",   \n\"password\": \"admin@12asasas3\",\n\"email\": \"newsddadmin.mustffafa@gmail.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view livestream",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZWU0YjI3MTkyNTFkYWNlMDE4NjdhYSIsImlhdCI6MTY0MzAwNjc1OSwiZXhwIjoxNjUwNzgyNzU5fQ.BP0zZJB8zQs_Fhe0V2_C6RbQO0VLDkqZGIkjCQk3Fu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/live-stream",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"live-stream"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/getAllUsers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user5@zoo.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/getUser",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"username\": \"user6again\",\n \"first_name\": \"lmao\",\n \"password\": \"admin@12asasas3\",\n \"email\": \"user6@zoo.com\"\n\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/updateUser",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user5@zoo.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/deleteUser",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"deleteUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "add note",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"text\": \"a7a\",\n    \"animal_id\":1,\n    \"danger_level\":\"low\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/addNode",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"addNode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All Notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/getAllNotes",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getAllNotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get note",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"8cb5a7f3-7da3-4bef-8b9f-4e28f54b7e2e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/getNote",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getNote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete note",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"8cb5a7f3-7da3-4bef-8b9f-4e28f54b7e2e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/deleteNote",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"deleteNote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "animals",
+			"item": [
+				{
+					"name": "get All Animal Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/getAllAnimalInfo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getAllAnimalInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Animal Info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/getAnimalData",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getAnimalData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add New Animal Info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 8 ,\n    \"cat_id\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/addNewAnimalIfon",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"addNewAnimalIfon"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "animals Cats",
+			"item": [
+				{
+					"name": "get All Animal_Cats Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/getAllAnimal_CatInfo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getAllAnimal_CatInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Animal_Cats Info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/getAnimal_CatData",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"getAnimal_CatData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add New Animal_Cat Info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"cat_id\" : 3,\n      \"name\" : \"monkeys\",\n      \"Min_H_R\" : 65,\n      \"Max_H_R\" : 150,\n      \"Min_A_T\" : 15,\n      \"Max_A_T\" : 50,\n      \"Min_SpO2\" : 120,\n      \"Max_SpO2\" : 180\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/addNewAnimal_CatInfo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"addNewAnimal_CatInfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sensor data",
+			"item": [
+				{
+					"name": "get all sensor data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sort[createdAt]",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"from\": \"2022-04-09 12:45:22.035000+0000\",\n    \"to\":    \"2022-04-10 11:00:36.536000+0000\",\n    \"animal_id\":1\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/sensorData/getAll/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sensorData",
+								"getAll",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9ce042c9-4f19-49b1-96ef-06e22adb9b2d",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sensor data by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sort[createdAt]",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/sensorData/getAll/f265264b-809e-4a7c-8e1c-c1c1cf1fc6a8   444",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sensorData",
+								"getAll",
+								"f265264b-809e-4a7c-8e1c-c1c1cf1fc6a8   444"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9ce042c9-4f19-49b1-96ef-06e22adb9b2d",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
